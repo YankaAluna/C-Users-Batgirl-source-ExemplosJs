@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Receitas</title>
+    <!-- Inclusão do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-warning" onload="preencheCatalogo()">
+    <!-- Área principal -->
+    <div class="container-fluid">
+        <h1 class="text-center my-4">Catálogo de Receitas</h1>
+        <!-- Painel de receitas -->
+        <div id="pnlCatalogo" class="d-flex flex-wrap gap-3 justify-content-center">
+            <!-- As receitas serão inseridas aqui dinamicamente -->
+        </div>
+    </div>
+
+    <script>
+        // Vetor de receitas em formato JSON
+        const receitas = [
+            {
+                titulo: "Pudim de Café",
+                imagem: "https://bing.com/th?id=OSK.eb12d4075ef4a004e69d23563400855d",
+                ingredientes: [
+                    "4 Ovos",
+                    "1 lata de leite (mesma medida de leite condensado)",
+                    "1 colher de (sopa cheia) de café solúvel",
+                    "1 colher (sopa) de achocolatado em pó",
+                    "1 lata de leite condensado"
+                ],
+                preparo: "Jogue o açúcar da calda na forma e aqueça até caramelar.Mexa de forma circular para que espalhe de forma uniforme.Bater no liquidificar os ovos, o leite condensado, o leite, o café solúvel e o achocolatado.Misture tudo durante 2 minutos.Derrame sobre uma forma redonda de furo (pequena), já com a calda pronta.Coloque para assar na forma caramelada em banho-maria.Espere o pudim esfriar, coloque-o na geladeira para desenformá-lo gelado."
+            },
+            {
+                titulo: "Pão Caseiro",
+                imagem: "https://bing.com/th?id=OSK.337d9bb995bee3decd1697438fc88968",
+                ingredientes: [
+                    "4 xícaras de farinha de trigo",
+                    "1 colher de sal",
+                    "1 colher de açúcar",
+                    "1 sachê de fermento biológico",
+                    "1 1/2 xícara de água morna"
+                ],
+                preparo: "Misture o fermento com água morna e açúcar. Adicione os demais ingredientes e sove bem. Deixe descansar por 1 hora. Asse por 30 minutos."
+            },
+            {
+                 titulo: "Brigadeiro",
+                imagem: "https://bing.com/th?id=OSK.bdab409079ff8c8af516980626dc2f4c",
+                ingredientes: [
+                    "1 lata de leite condensado",
+                    "3 colheres de chocolate em pó",
+                    "1 colher de manteiga",
+                    "Chocolate granulado para decorar"
+                ],
+                preparo: "Misture todos os ingredientes em uma panela. Cozinhe em fogo baixo mexendo sempre até soltar do fundo. Espere esfriar e faça bolinhas."
+            }
+        ];
+        // Função para gerar a lista de ingredientes em HTML (arrow function atribuída a window)
+        window.getListaIngredientes = (receita) => {
+            let texto = '<ul class="list-unstyled">';
+            texto += receita.ingredientes
+                .map(ingrediente => `<li>• ${ingrediente}</li>`)
+                .reduce((html, item) => html + item, '');
+            texto += '</ul>';
+            return texto;
+        };
+
+        // Função para gerar o card de uma receita (arrow function atribuída a window)
+        window.getCard = (receita) => {
+            // imagem: style para altura fixa e object-fit para recorte consistente
+            const fallback = 'https://via.placeholder.com/250x200?text=Imagem+indispon%C3%ADvel';
+            return `
+                <div class="card" style="width: 250px">
+                    <img src="${receita.imagem}" 
+                         class="card-img-top" 
+                         alt="${receita.titulo}"
+                         style="width:100%; height:200px; object-fit:cover;"
+                         onerror="this.src='${fallback}'">
+                    <div class="card-body">
+                        <h5 class="card-title">${receita.titulo}</h5>
+                        <div class="card-text">
+                            <strong>Ingredientes:</strong>
+                            ${getListaIngredientes(receita)}
+                            <hr>
+                            <strong>Modo de Preparo:</strong>
+                            <p>${receita.preparo}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        };
+
+        // Função para preencher o catálogo (arrow function atribuída a window)
+        window.preencheCatalogo = () => {
+            const pnlCatalogo = document.getElementById('pnlCatalogo');
+            const cardsHTML = receitas
+                .map(receita => getCard(receita))
+                .reduce((html, card) => html + card, '');
+            pnlCatalogo.innerHTML = cardsHTML;
+        };
+    </script>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
