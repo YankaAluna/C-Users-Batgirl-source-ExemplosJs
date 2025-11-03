@@ -1,15 +1,4 @@
-//* ordenando.js
-   Versão limpa e organizada
-   - Utilitários
-   - Algoritmos de ordenação
-   - Helpers DOM
-   - Handlers de interação
-   - Inicialização (event listeners)
-*/
-
-// --------------------
-// Utilitários
-// --------------------
+// arrow functions
 const swap = (arr, i, j) => {
     [arr[i], arr[j]] = [arr[j], arr[i]];
 };
@@ -23,9 +12,7 @@ const shuffle = (arr, qtdTrocas = arr.length) => {
     return arr;
 };
 
-// --------------------
 // Algoritmos de ordenação
-// --------------------
 const bubbleSort = (arr) => {
     const a = arr;
     const n = a.length;
@@ -70,9 +57,7 @@ const quickSort = (arr, low = 0, high = arr.length - 1) => {
     return arr;
 };
 
-// --------------------
 // Helpers DOM
-// --------------------
 const readListValues = (listElement) => {
     if (!listElement) return [];
     return Array.from(listElement.children)
@@ -85,9 +70,7 @@ const renderListValues = (listElement, arr) => {
     listElement.innerHTML = arr.map(v => `<li>${v}</li>`).join('');
 };
 
-// --------------------
 // Handlers de interação
-// --------------------
 const handleAdd = () => {
     const campoValor = document.getElementById('valor');
     const listaValores = document.getElementById('valores');
@@ -135,9 +118,7 @@ const handleLimpar = () => {
     if (listaValores) listaValores.innerHTML = '';
 };
 
-// --------------------
 // Inicialização: registra event listeners (melhora separação HTML/JS)
-// --------------------
 document.addEventListener('DOMContentLoaded', () => {
     const btnAdicionar = document.getElementById('btnAdicionar');
     const btnOrdenar = document.getElementById('btnOrdenar');
