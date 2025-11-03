@@ -6,17 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ordenando com JavaScript e DOM </title>
     <style>
-        body { font-family: Centaur, sans-serif; padding: 22px;}
-        #arr { margin: 10px 0; font-weight:600;}
-        button { margin-right: 8px; }
+        .btn-purple {
+            background-color: #6a0dad; /* roxo */
+            color: #ffffff; /* branco */
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 0.9rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-purple:hover {
+            filter: brightness(0.9);
+            opacity: 0.95;
+        }
+        /* foco acessível */
+        .btn-purple:focus {
+            outline: 2px solid rgba(106,13,173,0.25);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
     <h1> Ordenando com JavaScript e DOM </h1>
     
     <!-- Campo de entrada e botões -->
-    <input type = "number" id = "valor" placeholder = "Digite um Número">
-    <button onclick = "add()">Adicionar</button>
+    <input type="number" id="valor" placeholder="Digite um número">
+    <button id="btnAdicionar" class="btn-purple">Adicionar</button>
  <!-- Lista de seleção para algoritmos -->
     <label for = "algoritmo">Algoritmo de Ordenação</label>
     <select id ="algoritmo" arial-label="selecione o algoritmo de ordenação">
@@ -25,9 +40,9 @@
         <option value="quick">Quick Sort</option>  
     </select>
  <!-- Campo de entrada e botões -->
-    <button onclick="ordenar()">Ordenar</button>   
-    <button onclick="misturar()">Misturar</button>   
-    <button onclick="limpar()">Limpar</button>    
+      <button id="btnOrdenar" class="btn-purple">Ordenar</button>
+    <button id="btnMisturar" class="btn-purple">Misturar</button>
+    <button id="btnLimpar" class="btn-purple">Limpar</button> 
   <!-- Lista de valores -->
     <ul id="valores"></ul>    
     <script src="ordenando.js"></script>
