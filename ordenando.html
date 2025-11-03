@@ -13,21 +13,22 @@
 </head>
 <body>
     <h1> Ordenando com JavaScript e DOM </h1>
-
-    <div>
-        <label> vetor inicial numérico):</label>
-        <input id="inpútArray" value="5,3,8,1,9,2,7,4" style="width:250px" />
-        <button id="setArray">carregar</button>
-    </div>
-    <div style="margin-top:10px;">
-        <button id="shuffleBtn">Embaralhar (shuffle)</button>
-        <botton id="bubbleBtn">Bubble Sort</botton>
-        <button id="selectionBtn">Selection Sort</button>
-        <button id="quickBtn">Quick Sort</button>
-    </div>
-    <div id="arr">[ ]</div>
-    <pre id="log"></pre>
     
+    <!-- Campo de entrada e botões -->
+    <input type = "number" id = "valor" placeholder = "Digite um Número">
+    <button onclick = "add()">Adicionar</button>
+ <!-- Lista de seleção para algoritmos -->
+    <label for = "algoritmo">Algoritmo de Ordenação</label>
+    <select id ="algoritmo" arial-label="selecione o algoritmo de ordenação">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="quick">Quick Sort</option>  
+    </select>
+ <!-- Campo de entrada e botões -->
+    <button onclick="ordenar()">Ordenar</button>   
+    <button onclick="misturar()">Misturar</button>    
+  <!-- Lista de valores -->
+    <ul id="valores"></ul>    
     <script src="ordenando.js"></script>
 </body>
 </html>
